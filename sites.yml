@@ -1,0 +1,25 @@
+---
+name:           "Example1"
+ftpUrl:         "example1.com"
+backupPath:     "/html/backups"
+username:       "admin"
+password:       'passwort'
+fileExtensions: "zip"
+keepForDays:    60
+weekdays:       
+    - 0
+---
+name:           "Example2"
+ftpUrl:         "example2.com"
+backupPath:     "/html/backups"
+username:       "admin"
+password:       'passwort'
+fileExtensions: "sql"
+keepForDays:    60
+weekdays:       
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
