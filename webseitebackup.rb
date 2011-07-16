@@ -2,8 +2,7 @@
 # saves them into designated folders.
 # Author::   David Freund (malto:dev@davidfreund.de)
 # Copyright::  2011 David Freund
-# License::
-    GPL
+# License::   GPL
 
 require 'rubygems'
 require 'net/ftp'
