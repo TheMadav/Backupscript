@@ -23,6 +23,24 @@ CON_TIMEOUT      = 30
 #Timeout for the file transfer
 TRANSFER_TIMEOUT = 1200
 
+#Testmode, will check every website, independent of weekday
+case ARGV[0]
+  when "-test"
+    TESTMODE = true
+    TESTSITE = nil
+  when "-testsite"
+    TESTMODE = true
+      if ARGV[1].nil?
+        puts "No site name given"
+        exit 1
+      else
+        TESTSITE = ARGV[1]
+      end
+  else
+    TESTMODE = false
+    TESTSITE = nil
+end
+
 month = Time.now.month
 year = Time.now.year
 #Logfile - a new file is created each month
@@ -51,7 +69,12 @@ class Webseite
   #Checks if the backup should run today, else aborts.
   def initBackup 
     today = Time.now.wday
-    if @weekdays.include?(today)
+    #Do the backup either as planned or in testmode
+    if ( 
+          (@weekdays.include?(today) && TESTMODE === false) || 
+          (TESTMODE === true && TESTSITE.nil?) || 
+          (TESTMODE === true && TESTSITE == @name)
+      )
       $LOG.info("#{@name} : Backup initiated")  
       self.createBackup unless @backupUrl.nil?
       self.ftpDownload
@@ -158,7 +181,9 @@ yp = YAML::load_documents( websites ) { |website|
       website['weekdays'])
   )
 }
+$LOG.info("--------- STARTING TODAYS BACKUP------------") 
 #Triggers the Backup for each Website
 websitesArray.each{ |website|
   website.initBackup()
   }
+  $LOG.info("--------- COMPLETED TODAYS BACKUP------------")
