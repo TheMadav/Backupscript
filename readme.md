@@ -32,6 +32,6 @@ Before you run the script the first time, you should enter your website informat
 
 You can run the script with two arguments to test configurations.
 
-`ruby downloadbackup.rb *-test*` will trigger every configuration, independent of the assigned weekdays.
+`ruby downloadbackup.rb -test` will trigger every configuration, independent of the assigned weekdays.
 
-`ruby downloadbackup.rb *-testsite NAME*` will run **only** the specified site (although if you have several configurations with the same name, all of them will run). 
+`ruby downloadbackup.rb -testsite NAME` will run **only** the specified site (although if you have several configurations with the same name, all of them will run). 
