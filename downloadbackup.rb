@@ -1,8 +1,8 @@
 # This script downloads backups (or other files) from websites and
 # saves them into designated folders.
-# Author::   David Freund (malto:dev@davidfreund.de)
+# Author::   David Freund (mailto:dev@davidfreund.de)
 # Copyright::  2011 David Freund
-# License::   GPL
+# License::   BSD (see license.md)
 
 require 'rubygems'
 require 'net/ftp'
@@ -103,6 +103,9 @@ class Webseite
   
   #Cleans the folder from files older than the livespan specified in the YAML document, standard livespan is 100 days
   def cleanUp
+    if @keepForDays == 0
+      return
+    end
     Dir.chdir(@folder) 
     Dir.foreach(".") do |entry|
        next if entry == "." or entry == ".."
