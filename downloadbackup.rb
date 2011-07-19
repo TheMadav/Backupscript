@@ -17,7 +17,7 @@ require 'rexml/document'
 include REXML
 
 #Folder where the files and logs are saved, usually the same folder as the script is in.
-LOCALFOLDER = File.expand_path(Dir.getwd)
+LOCALFOLDER =  File.expand_path(File.dirname(__FILE__))
 #Connection Timeout for the FTP Transfer
 CON_TIMEOUT      = 30
 #Timeout for the file transfer
