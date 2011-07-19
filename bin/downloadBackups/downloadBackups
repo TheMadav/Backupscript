@@ -1,5 +1,0 @@
-#!/usr/bin/env ruby
-
-require 'runner'
-runner = DownloadBackups::Runner.new(ARGV)
-runner.run
